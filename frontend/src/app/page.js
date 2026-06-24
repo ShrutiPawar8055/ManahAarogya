@@ -1,7 +1,7 @@
 "use client";
 
 import { useTransform, motion, useInView } from "motion/react";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import BgScroll, { useScrollContext } from "@/components/BgScroll";
 import Link from "next/link";
 import AnimatedTestimonialsDemo from "@/components/animated-testimonials-demo";
@@ -38,7 +38,6 @@ function ScrollOverlay({ children, scrollRange, className = "", immediate = fals
 
 // Navbar Component
 function Navbar({ isDark = false }) {
-  const [mobileNavOpen, setMobileNavOpen] = useState(false);
   return (
     <motion.nav
       initial={{ y: -100, opacity: 0 }}
@@ -46,12 +45,12 @@ function Navbar({ isDark = false }) {
       transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
       className="sticky top-2 left-0 right-0 z-50 px-4 md:px-0 pointer-events-none"
     >
-      <div className={`mx-auto flex max-w-5xl items-center justify-between rounded-full backdrop-blur-xl border shadow-[0_8px_32px_rgba(0,0,0,0.08)] px-4 sm:px-6 py-3 pointer-events-auto transition-colors duration-500 ${isDark ? 'bg-zinc-900/80 border-white/10' : 'bg-white/70 border-white/20'}`}>
-        <Link href="/" className="flex items-center gap-2 sm:gap-3 group">
-          <div className="relative h-8 w-8 sm:h-10 sm:w-10 overflow-hidden rounded-xl shadow-sm transition-transform group-hover:scale-105">
+      <div className={`mx-auto flex max-w-5xl items-center justify-between rounded-full backdrop-blur-xl border shadow-[0_8px_32px_rgba(0,0,0,0.08)] px-6 py-3 pointer-events-auto transition-colors duration-500 ${isDark ? 'bg-zinc-900/80 border-white/10' : 'bg-white/70 border-white/20'}`}>
+        <Link href="/" className="flex items-center gap-3 group">
+          <div className="relative h-10 w-10 overflow-hidden rounded-xl shadow-sm transition-transform group-hover:scale-105">
             <img src="/logo.png" alt="Logo" className="h-full w-full object-cover" />
           </div>
-          <span className={`text-lg sm:text-xl font-bold transition-colors duration-500 ${isDark ? 'text-white' : 'text-black'}`}>
+          <span className={`text-xl font-bold transition-colors duration-500 ${isDark ? 'text-white' : 'text-black'}`}>
             Manah Arogya
           </span>
         </Link>
@@ -75,8 +74,9 @@ function Navbar({ isDark = false }) {
             Contact
           </Link>
         </div>
-        <div className="flex items-center gap-2 sm:gap-4">
-          <Link href="/signin" className="hidden sm:block">
+        <div className="flex items-center gap-4">
+
+          <Link href="/signin">
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -85,36 +85,8 @@ function Navbar({ isDark = false }) {
               <span className="relative z-10">Login</span>
             </motion.div>
           </Link>
-
-          {/* Mobile hamburger button */}
-          <button
-            className={`md:hidden flex items-center justify-center w-10 h-10 rounded-full transition-colors ${isDark ? 'text-white hover:bg-white/10' : 'text-zinc-700 hover:bg-zinc-100'}`}
-            onClick={() => setMobileNavOpen((prev) => !prev)}
-            aria-label="Toggle mobile menu"
-          >
-            {mobileNavOpen ? (
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
-            ) : (
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg>
-            )}
-          </button>
         </div>
       </div>
-
-      {/* Mobile dropdown nav */}
-      {mobileNavOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.2 }}
-          className={`md:hidden mx-auto max-w-5xl mt-2 rounded-2xl backdrop-blur-xl border shadow-lg px-6 py-4 pointer-events-auto flex flex-col gap-3 ${isDark ? 'bg-zinc-900/95 border-white/10' : 'bg-white/95 border-zinc-200/50'}`}
-        >
-          <Link href="#features" onClick={() => setMobileNavOpen(false)} className={`text-sm font-medium py-2 transition-colors ${isDark ? 'text-zinc-300 hover:text-white' : 'text-zinc-600 hover:text-zinc-900'}`}>Features</Link>
-          <Link href="#about" onClick={() => setMobileNavOpen(false)} className={`text-sm font-medium py-2 transition-colors ${isDark ? 'text-zinc-300 hover:text-white' : 'text-zinc-600 hover:text-zinc-900'}`}>About</Link>
-          <Link href="/contact" onClick={() => setMobileNavOpen(false)} className={`text-sm font-medium py-2 transition-colors ${isDark ? 'text-zinc-300 hover:text-white' : 'text-zinc-600 hover:text-zinc-900'}`}>Contact</Link>
-          <Link href="/signin" onClick={() => setMobileNavOpen(false)} className={`text-sm font-semibold py-2.5 rounded-full text-center mt-1 ${isDark ? 'bg-white text-zinc-900' : 'bg-zinc-900 text-white'}`}>Login</Link>
-        </motion.div>
-      )}
     </motion.nav>
   );
 }
@@ -230,7 +202,7 @@ function TimelineSection() {
                 </div>
 
                 {/* Mobile layout */}
-                <div className="md:hidden flex w-full relative z-20">
+                <div className="md:hidden flex w-full relative z-20 border">
                   <div className="w-[calc(100%-5rem)] ml-auto bg-white p-6 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-zinc-100 group hover:-translate-y-1 transition-transform">
                     <div className="text-sm font-bold text-emerald-600 mb-2">{item.step}</div>
                     <h3 className="text-xl font-bold text-zinc-900 mb-2">{item.title}</h3>

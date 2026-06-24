@@ -91,10 +91,10 @@ export default function Header({ title, subtitle }) {
   };
 
   return (
-    <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-      <div className="min-w-0">
-        <h1 className="font-google text-xl sm:text-2xl font-bold text-gray-800 truncate">{title}</h1>
-        <p className="text-sm text-gray-500 truncate">{subtitle}</p>
+    <div className="mb-6 flex items-center justify-between">
+      <div>
+        <h1 className="font-google text-2xl font-bold text-gray-800">{title}</h1>
+        <p className="text-sm text-gray-500">{subtitle}</p>
       </div>
 
       <div className="relative flex items-center gap-3" ref={menuRef}>
@@ -111,7 +111,7 @@ export default function Header({ title, subtitle }) {
         </button>
 
         {showInfoMenu && (
-          <div className="absolute right-0 sm:right-auto top-14 z-50 w-72 overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-xl">
+          <div className="absolute right-0 top-14 z-50 w-72 overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-xl sm:right-[250px]">
             <div className="border-b border-gray-50 bg-gray-50/60 px-4 py-3">
               <h3 className="text-sm font-semibold text-gray-800">{t("Display Language")}</h3>
               <p className="mt-1 text-xs text-gray-500">{t("Choose how text appears across the platform.")}</p>

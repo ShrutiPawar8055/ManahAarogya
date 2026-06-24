@@ -131,7 +131,6 @@ const navItems = [
 export default function HomeLayout({ children }) {
   const { t } = useLanguage();
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [authChecked, setAuthChecked] = useState(false);
   const [userRole, setUserRole] = useState("user");
   const [moodModalOpen, setMoodModalOpen] = useState(false);
@@ -201,28 +200,7 @@ export default function HomeLayout({ children }) {
         </div>
       )}
 
-      {/* Mobile hamburger button */}
-      <button
-        className="fixed top-4 left-4 z-50 md:hidden flex items-center justify-center w-11 h-11 rounded-xl bg-white shadow-md border border-gray-200"
-        onClick={() => setMobileMenuOpen((prev) => !prev)}
-        aria-label="Toggle menu"
-      >
-        {mobileMenuOpen ? (
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
-        ) : (
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg>
-        )}
-      </button>
-
       <div className="flex h-full w-full z-10 relative">
-        {/* Mobile overlay backdrop - must be inside the z-10 container */}
-        {mobileMenuOpen && (
-          <div
-            className="fixed inset-0 z-30 bg-black/30 md:hidden"
-            onClick={() => setMobileMenuOpen(false)}
-          />
-        )}
-
         <MoodCheckInModal
         open={moodModalOpen}
         saving={savingMood}
@@ -248,7 +226,7 @@ export default function HomeLayout({ children }) {
       />
       
       {/* Sidebar */}
-      <div className={`h-full p-5 shrink-0 fixed md:static z-40 transition-transform duration-300 ease-in-out ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0`}>
+      <div className="h-full p-5 shrink-0">
         <aside
           className={`${sidebarCollapsed ? "w-20" : "w-[260px]"
             } ${box_shadow} bg-white rounded-[24px] h-full flex flex-col transition-all duration-300 ease-in-out`}
@@ -285,7 +263,6 @@ export default function HomeLayout({ children }) {
                 <Link
                   key={item.id}
                   href={item.href}
-                  onClick={() => setMobileMenuOpen(false)}
                   className={`group w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200 ease-in-out ${isActive
                       ? "bg-emerald-50 text-neutral-900 font-semibold shadow-[inset_0_1px_1px_rgba(255,255,255,1),0_1px_2px_rgba(16,185,129,0.1)] border border-emerald-100/50"
                       : "text-neutral-700 hover:bg-emerald-50/50 hover:text-neutral-900"
@@ -344,7 +321,7 @@ export default function HomeLayout({ children }) {
       </div>
 
       {/* Main Content */}
-      <main className="flex-1 p-4 pt-16 md:pt-6 md:p-6 overflow-y-auto w-full h-full">
+      <main className="flex-1 p-6 overflow-y-auto w-full h-full">
         <div className="max-w-6xl mx-auto w-full">
           <NotificationProvider>
             {children}

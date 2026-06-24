@@ -60,12 +60,12 @@ export default function TherapistDashboardPage() {
 
   return (
     <div className="pb-20">
-      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end mb-8 gap-4">
+      <div className="flex justify-between items-end mb-8">
         <Header
           title={t("Practitioner Overview")}
           subtitle={t("Here's a snapshot of your workload today.")}
         />
-        <div className="hidden md:flex items-center gap-4 mb-2">
+        <div className="flex items-center gap-4 hidden md:flex mb-2">
           <button className="relative p-3 bg-white rounded-xl ring-1 ring-black/5 hover:bg-gray-50 transition-colors shadow-sm">
             <Bell className="w-5 h-5 text-gray-600" />
             {notifications.length > 0 && (

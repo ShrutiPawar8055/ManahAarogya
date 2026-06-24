@@ -98,8 +98,8 @@ export default function SignIn() {
   };
 
   return (
-    <div className="min-h-screen flex font-google justify-center items-center bg-gray-100 px-4 py-8">
-      <div className="w-full max-w-md lg:max-w-lg flex items-center justify-center p-6 sm:p-8 bg-white rounded-3xl border border-gray-300">
+    <div className="min-h-screen flex font-google justify-center items-center bg-gray-100">
+      <div className="w-full lg:w-1/2  flex items-center justify-center p-8 bg-white rounded-3xl border border-gray-300">
         <div className="w-full max-w-md">
           {/* Mobile Logo */}
           <div className=" flex justify-center mb-8">

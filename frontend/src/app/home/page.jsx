@@ -138,7 +138,7 @@ export default function Overview() {
            </button>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 pb-20 text-gray-900">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pb-20 text-gray-900">
           
           {/* Quick Actions - Irregular 7 / 5 split */}
           <div className="md:col-span-7 flex items-center justify-between rounded-xl bg-emerald-700/70 p-6 text-white shadow-sm ring-1 ring-emerald-800/50 opacity-95">
@@ -293,7 +293,7 @@ export default function Overview() {
 
           <div className={`md:col-span-8 ${static_card_style} flex flex-col`}>
              <p className="text-sm font-bold tracking-tight text-gray-900 mb-6">Your Story (Last 7 Days)</p>
-             <div className="flex items-end justify-between gap-1 sm:gap-3 h-36 sm:h-48 w-full">
+             <div className="flex items-end justify-between gap-3 h-48 w-full">
                 {paddedMoodHistory.map((item, idx) => (
                     <div key={item.id || idx} className={`flex flex-1 flex-col items-center gap-3 relative h-full justify-end group ${item.empty ? 'opacity-40' : ''}`}>
                       <div

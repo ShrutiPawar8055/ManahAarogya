@@ -6,7 +6,7 @@ Full-stack mental wellness platform with:
 - AI-powered assistant and recommenders (Cerebras with safe fallbacks)
 
 ## Features
-edit
+
 - Google sign-in flow and user session handling
 - Assessment flow (PHQ-9 + GAD-7), scoring, summary, alerts
 - Dashboard overview
