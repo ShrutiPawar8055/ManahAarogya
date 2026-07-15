@@ -1,0 +1,18 @@
+[Unit]
+Description=ManahAarogya LiveKit Voice Worker
+After=network.target
+
+[Service]
+Type=simple
+User=ubuntu
+Group=ubuntu
+WorkingDirectory=/opt/manaharogya/backend
+EnvironmentFile=/opt/manaharogya/backend/.env
+ExecStart=/opt/manaharogya/backend/venv/bin/python -m app.agents.voice_agent start
+Restart=always
+RestartSec=5
+StandardOutput=append:/var/log/manaharogya-worker.log
+StandardError=append:/var/log/manaharogya-worker.err.log
+
+[Install]
+WantedBy=multi-user.target

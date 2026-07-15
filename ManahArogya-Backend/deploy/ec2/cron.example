@@ -1,0 +1,9 @@
+# Run: crontab -e
+# Every 10 minutes: API heartbeat command
+*/10 * * * * cd /opt/manaharogya/backend && /opt/manaharogya/backend/venv/bin/python -m app.cron_tasks heartbeat >> /var/log/manaharogya-cron-api.log 2>&1
+
+# Every 10 minutes: Worker heartbeat command
+*/10 * * * * cd /opt/manaharogya/backend && /opt/manaharogya/backend/venv/bin/python -m app.agents.cron_tasks heartbeat >> /var/log/manaharogya-cron-worker.log 2>&1
+
+# Optional: trigger HTTP cron endpoint instead of command-based heartbeat
+# */10 * * * * curl -sS -X POST https://api.example.com/internal/cron/heartbeat -H "X-CRON-KEY: <CRON_SECRET>" >> /var/log/manaharogya-cron-http.log 2>&1
