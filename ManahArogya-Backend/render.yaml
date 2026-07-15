@@ -1,0 +1,72 @@
+services:
+  - type: web
+    name: manaharogya-backend
+    runtime: python
+    rootDir: backend
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "uvicorn app.main:app --host 0.0.0.0 --port $PORT"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11
+      - key: CRON_SECRET
+        sync: false
+      - key: LIVEKIT_URL
+        sync: false
+      - key: LIVEKIT_API_KEY
+        sync: false
+      - key: LIVEKIT_API_SECRET
+        sync: false
+      - key: SARVAM_API_KEY
+        sync: false
+
+  - type: worker
+    name: manaharogya-voice-worker
+    runtime: python
+    rootDir: backend
+    plan: starter
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python -m app.agents.voice_agent start"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11
+      - key: LIVEKIT_URL
+        sync: false
+      - key: LIVEKIT_API_KEY
+        sync: false
+      - key: LIVEKIT_API_SECRET
+        sync: false
+      - key: SARVAM_API_KEY
+        sync: false
+
+  - type: cron
+    name: manaharogya-api-heartbeat
+    runtime: python
+    rootDir: backend
+    plan: starter
+    schedule: "*/10 * * * *"
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python -m app.cron_tasks heartbeat"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11
+      - key: CRON_SECRET
+        sync: false
+
+  - type: cron
+    name: manaharogya-worker-heartbeat
+    runtime: python
+    rootDir: backend
+    plan: starter
+    schedule: "*/10 * * * *"
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python -m app.agents.cron_tasks heartbeat"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11
+      - key: LIVEKIT_URL
+        sync: false
+      - key: LIVEKIT_API_KEY
+        sync: false
+      - key: LIVEKIT_API_SECRET
+        sync: false
