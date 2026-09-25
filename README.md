@@ -1,4 +1,4 @@
-# Manah Arogya (acm2k26)
+# ManahAarogya (acm2k26)
 
 Full-stack mental wellness platform with:
 - Next.js frontend (`frontend/`)
